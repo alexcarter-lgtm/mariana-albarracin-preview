@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mariana Albarracin — Identidad Visual · Diseño Gráfico</title>
+  <meta name="description" content="Estudio creativo de diseño gráfico especializado en identidad visual, branding y comunicación. Buenos Aires · Barcelona.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+  /* ===========================
+     RESET & BASE
+  =========================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #404041;
+    background: #fff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  img { display: block; max-width: 100%; }
+
+  :root {
+    --text: #404041;
+    --accent: #78a899;
+    --gold: #fdb926;
+    --aqua: #7fffd4;
+    --gray: #f6f6f5;
+    --border: #e8e8e5;
+    --nav-h: 70px;
+  }
+
+  /* ===========================
+     NAV
+  =========================== */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    height: var(--nav-h);
+    padding: 0 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.35s, box-shadow 0.35s;
+  }
+  .nav.scrolled {
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .nav-logo i {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.75rem;
+  }
+  .nav-links a {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--text) !important;
+    color: #fff !important;
+    padding: 0.45rem 1.15rem;
+    border-radius: 100px;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--accent) !important; }
+
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text);
+    transition: all 0.3s;
+    transform-origin: center;
+  }
+  .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Mobile overlay */
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 800;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s;
+  }
+  .nav-overlay.open { opacity: 1; pointer-events: all; }
+  .nav-overlay a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+  .nav-overlay a:hover { color: var(--accent); }
+
+  /* ===========================
+     HERO
+  =========================== */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 45% 55%;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 9rem 4rem 6rem 5vw;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.63rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    animation: aUp 0.8s 0.3s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 5.5vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    opacity: 0;
+    animation: aUp 0.9s 0.5s forwards;
+  }
+  .hero-name i {
+    font-style: italic;
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-tagline {
+    margin-top: 1.75rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #9a9a9a;
+    font-weight: 300;
+    opacity: 0;
+    animation: aUp 0.8s 0.75s forwards;
+  }
+
+  .hero-rule {
+    width: 44px;
+    height: 1px;
+    background: var(--accent);
+    margin: 2.25rem 0;
+    opacity: 0;
+    animation: aFade 0.6s 0.95s forwards;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text);
+    opacity: 0;
+    animation: aUp 0.8s 1.05s forwards;
+    transition: color 0.2s;
+    width: fit-content;
+  }
+  .hero-cta svg { transition: transform 0.2s; }
+  .hero-cta:hover { color: var(--accent); }
+  .hero-cta:hover svg { transform: translateX(5px); }
+
+  .hero-meta {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 5vw;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #bbb;
+    opacity: 0;
+    animation: aFade 1s 1.4s forwards;
+  }
+  .hero-meta-line {
+    width: 36px;
+    height: 1px;
+    background: #ccc;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+  }
+  .slide.active { opacity: 1; }
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .slide-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(255,255,255,0.18) 0%, transparent 50%);
+  }
+
+  .slide-dots {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    z-index: 10;
+    display: flex;
+    gap: 7px;
+  }
+  .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .dot.active { background: #fff; transform: scale(1.5); }
+
+  @keyframes aUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes aFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ===========================
+     TICKER
+  =========================== */
+  .ticker {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 0;
+    background: #fff;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 28s linear infinite;
+  }
+  .ticker-track span {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #aaa;
+    white-space: nowrap;
+    padding: 0 2.5rem;
+  }
+  .ticker-track span.accent { color: var(--accent); }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ===========================
+     SECTION SHARED
+  =========================== */
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .s-label {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .s-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.15;
+  }
+  .s-title i { font-style: italic; color: var(--accent); }
+
+  /* ===========================
+     PORTFOLIO
+  =========================== */
+  .portfolio {
+    padding: 7rem 5vw;
+    background: #fff;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+  }
+  .f-btn {
+    padding: 0.38rem 1rem;
+    font-size: 0.63rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: #999;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .f-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .f-btn.active { background: var(--text); border-color: var(--text); color: #fff; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 295px;
+    gap: 10px;
+  }
+
+  .pitem {
+    position: relative;
+    overflow: hidden;
+    background: var(--gray);
+    cursor: pointer;
+  }
+  .pitem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: block;
+  }
+  .pitem:hover img { transform: scale(1.06); }
+
+  .poverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(40,40,40,0.88) 0%, rgba(40,40,40,0) 55%);
+    opacity: 0;
+    transition: opacity 0.38s;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem 1.4rem;
+  }
+  .pitem:hover .poverlay { opacity: 1; }
+
+  .pinfo {
+    transform: translateY(7px);
+    transition: transform 0.38s;
+  }
+  .pitem:hover .pinfo { transform: translateY(0); }
+
+  .pcat {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--aqua);
+    font-weight: 500;
+    margin-bottom: 0.28rem;
+  }
+  .pname {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: #fff;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+  .pdesc {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.2rem;
+  }
+
+  .badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: var(--gold);
+    color: #fff;
+    font-size: 0.52rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0.28rem 0.65rem;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ===========================
+     SERVICES
+  =========================== */
+  .servicios {
+    padding: 7rem 5vw;
+    background: var(--gray);
+  }
+  .srv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .srv-card {
+    background: #fff;
+    padding: 2.75rem 2.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .srv-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s;
+  }
+  .srv-card:hover::before { transform: scaleY(1); }
+  .srv-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.06); }
+
+  .srv-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 400;
+    color: var(--gold);
+    opacity: 0.18;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+  .srv-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .srv-h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+  .srv-list li {
+    font-size: 0.8rem;
+    color: #777;
+    padding: 0.38rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .srv-list li:last-child { border-bottom: none; }
+  .srv-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ===========================
+     ABOUT
+  =========================== */
+  .about {
+    padding: 7rem 5vw;
+    background: #fff;
+  }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: 7rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .about-photo-wrap {
+    position: relative;
+  }
+  .about-frame {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+  .about-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+  .about-frame:hover img { transform: scale(1.04); }
+  .about-deco {
+    position: absolute;
+    bottom: -1.75rem;
+    right: -1.75rem;
+    width: 55%;
+    height: 55%;
+    border: 2px solid var(--gold);
+    z-index: -1;
+    opacity: 0.5;
+  }
+
+  .about-label { margin-bottom: 0.75rem; }
+  .about-pull {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.45;
+    margin-bottom: 1.75rem;
+  }
+  .about-bio {
+    font-size: 0.88rem;
+    line-height: 1.85;
+    color: #6b6b6b;
+    margin-bottom: 2.5rem;
+  }
+  .about-stats {
+    display: flex;
+    gap: 2.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+  .stat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-l {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+  .about-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .about-contact a {
+    font-size: 0.82rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .about-contact a:hover { color: var(--accent); }
+  .about-contact a span {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #aaa;
+    min-width: 48px;
+  }
+  .about-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .about-social a {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.45rem 1rem;
+    border-radius: 100px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .about-social a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ===========================
+     CONTACT CTA
+  =========================== */
+  .cta-band {
+    padding: 6rem 5vw;
+    background: var(--text);
+    text-align: center;
+  }
+  .cta-band .s-label { color: var(--aqua); opacity: 0.7; }
+  .cta-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .cta-h2 i { font-style: italic; color: var(--aqua); }
+  .cta-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 2.5rem;
+  }
+  .cta-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .cta-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .cta-email:hover { background: #6a9e8f; transform: translateY(-2px); }
+  .cta-phone {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .cta-phone:hover { color: rgba(255,255,255,0.9); }
+
+  /* ===========================
+     FOOTER
+  =========================== */
+  footer {
+    background: #2a2a2a;
+    padding: 2.5rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .foot-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 400;
+  }
+  .foot-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0.2rem;
+  }
+  .foot-links {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .foot-links a {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.2s;
+  }
+  .foot-links a:hover { color: var(--aqua); }
+  .foot-copy {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ===========================
+     SCROLL REVEAL
+  =========================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: 0.1s; }
+  .reveal.d2 { transition-delay: 0.2s; }
+  .reveal.d3 { transition-delay: 0.3s; }
+
+  /* ===========================
+     RESPONSIVE
+  =========================== */
+  @media (max-width: 1100px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 9rem 5vw 6rem; min-height: 75vh; }
+    .grid { grid-template-columns: repeat(3, 1fr); }
+    .srv-grid { grid-template-columns: 1fr 1fr; }
+    .about-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+    .about-deco { display: none; }
+    .about-photo-wrap { max-width: 420px; }
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+  }
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; gap: 6px; }
+    .srv-grid { grid-template-columns: 1fr; }
+    .hero-name { font-size: 3rem; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 5vw; }
+    .foot-links { justify-content: center; }
+    .about-stats { gap: 1.5rem; }
+  }
+  @media (max-width: 480px) {
+    .grid { grid-template-columns: 1fr; grid-auto-rows: 260px; }
+    .filters { gap: 0.35rem; }
+    .f-btn { font-size: 0.58rem; padding: 0.35rem 0.8rem; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ============================
+     NAVIGATION
+============================= -->
+<nav class="nav" id="mainNav">
+  <a href="#home" class="nav-logo">Mariana <i>Albarracin</i></a>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#about">Sobre mí</a></li>
+    <li><a href="mailto:hola@marianaalbarracin.com" class="nav-cta">Contacto</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="overlay">
+  <a href="#portfolio" class="o-link">Portfolio</a>
+  <a href="#servicios" class="o-link">Servicios</a>
+  <a href="#about" class="o-link">Sobre mí</a>
+  <a href="mailto:hola@marianaalbarracin.com" class="o-link">Contacto</a>
+</div>
+
+<!-- ============================
+     HERO
+============================= -->
+<section id="home" class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Buenos Aires · Barcelona · 2012–</p>
+    <h1 class="hero-name">
+      Mariana
+      <i>Albarracin</i>
+    </h1>
+    <p class="hero-tagline">Identidad Visual · Diseño Gráfico</p>
+    <div class="hero-rule"></div>
+    <a href="#portfolio" class="hero-cta">
+      Ver portfolio
+      <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+        <path d="M1 5h14M11 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <div class="hero-meta">
+      <div class="hero-meta-line"></div>
+      Diseño que comunica
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="slide active" id="s0">
+      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/6_Meraki_instituto_sign_design_branding_3_marianaalbarracin_.jpg" alt="Meraki Instituto">
+      <div class="slide-veil"></div>
+    </div>
+    <div class="slide" id="s1">
+      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/4_DDL_flow_pack_marianaalbarracin_.jpg" alt="Dulce de Leche">
+      <div class="slide-veil"></div>
+    </div>
+    <div class="slide" id="s2">
+      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/3_PAUL_contenido_RRSS_marianaalbarracin_.jpg" alt="Paul">
+      <div class="slide-veil"></div>
+    </div>
+    <div class="slide" id="s3">
+      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/5_EGS_rebranding_marianaalbarracin_.jpg" alt="EGS Rebranding">
+      <div class="slide-veil"></div>
+    </div>
+    <div class="slide" id="s4">
+      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/M_estudio_branding_marianaalbarracin_.jpg" alt="M Estudio">
+      <div class="slide-veil"></div>
+    </div>
+    <div class="slide-dots" id="dots">
+      <button class="dot active" data-i="0"></button>
+      <button class="dot" data-i="1"></button>
+      <button class="dot" data-i="2"></button>
+      <button class="dot" data-i="3"></button>
+      <button class="dot" data-i="4"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     TICKER
+============================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Identidad Visual</span><span class="accent">·</span>
+    <span>Branding</span><span class="accent">·</span>
+    <span>Packaging</span><span class="accent">·</span>
+    <span>Diseño Editorial</span><span class="accent">·</span>
+    <span>Espacios Comerciales</span><span class="accent">·</span>
+    <span>UX / UI</span><span class="accent">·</span>
+    <span>Dirección de Arte</span><span class="accent">·</span>
+    <span>Campañas</span><span class="accent">·</span>
+    <span>Identidad Visual</span><span class="accent">·</span>
+    <span>Branding</span><span class="accent">·</span>
+    <span>Packaging</span><span class="accent">·</span>
+    <span>Diseño Editorial</span><span class="accent">·</span>
+    <span>Espacios Comerciales</span><span class="accent">·</span>
+    <span>UX / UI</span><span class="accent">·</span>
+    <span>Dirección de Arte</span><span class="accent">·</span>
+    <span>Campañas</span><span class="accent">·</span>
+  </div>
+</div>
+
+<!-- ============================
+     PORTFOLIO
+============================= -->
+<section id="portfolio" class="portfolio">
+  <div class="section-header reveal">
+    <span class="s-label">Trabajo seleccionado</span>
+    <h2 class="s-title">Portfolio</h2>
+  </div>
+
+  <div class="filters reveal d1" id="filters">
+    <button class="f-btn active" data-f="all">Todos</button>
+    <button class="f-btn" data-f="id">Identidad</button>
+    <button class="f-btn" data-f="packaging">Packaging</button>
+    <button class="f-btn" data-f="editorial">Editorial</button>
+    <button class="f-btn" data-f="retail">Retail</button>
+    <button class="f-btn" data-f="campanas">Campañas</button>
+    <button class="f-btn" data-f="producto">Producto</button>
+    <button class="f-btn" data-f="uxui">UX / UI</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- ============================
+     SERVICIOS
+============================= -->
+<section id="servicios" class="servicios">
+  <div class="section-header reveal">
+    <span class="s-label">Lo que ofrezco</span>
+    <h2 class="s-title">Servicios</h2>
+  </div>
+
+  <div class="srv-grid">
+    <div class="srv-card reveal">
+      <div class="srv-num">01</div>
+      <div class="srv-tag">Identidad de marca</div>
+      <h3 class="srv-h3">Branding &amp;<br>Comunicación Visual</h3>
+      <ul class="srv-list">
+        <li>Logotipo e identidad visual</li>
+        <li>Espacios comerciales</li>
+        <li>Diseño de producto</li>
+        <li>Brandbook / Brand guidelines</li>
+        <li>Brand consulting</li>
+      </ul>
+    </div>
+    <div class="srv-card reveal d1">
+      <div class="srv-num">02</div>
+      <div class="srv-tag">Digital &amp; Social</div>
+      <h3 class="srv-h3">Web · Apps<br>&amp; Redes Sociales</h3>
+      <ul class="srv-list">
+        <li>Diseño web</li>
+        <li>Diseño de apps</li>
+        <li>Blogs y e-commerce</li>
+        <li>Redes sociales</li>
+        <li>Curación de contenidos</li>
+      </ul>
+    </div>
+    <div class="srv-card reveal d2">
+      <div class="srv-num">03</div>
+      <div class="srv-tag">Impresos &amp; Más</div>
+      <h3 class="srv-h3">Packaging, Editorial<br>&amp; Dirección de Arte</h3>
+      <ul class="srv-list">
+        <li>Papelería corporativa</li>
+        <li>Packaging</li>
+        <li>Dirección de arte</li>
+        <li>Revistas y libros</li>
+        <li>Lookbooks</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     ABOUT
+============================= -->
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-photo-wrap reveal">
+      <div class="about-frame">
+        <img src="http://www.marianaalbarracin.com/images/imgs/Bio/bio.jpg" alt="Mariana Albarracin">
+      </div>
+      <div class="about-deco"></div>
+    </div>
+
+    <div class="reveal d1">
+      <span class="s-label about-label">Sobre mí</span>
+      <p class="about-pull">"Vivir el diseño como<br>una forma de pensar<br>el mundo."</p>
+      <p class="about-bio">En el año 2012 fundé mi estudio creativo para especializarme en la identidad, diseño de marcas y branding. Vivir y trabajar desde diferentes lugares alrededor del mundo me ha enseñado a apreciar la diversidad visual y cultural, para poder resolver soluciones de diseño integrales, flexibles y significativas con un proceso profundo de investigación y desarrollo de conceptos.</p>
+
+      <div class="about-stats">
+        <div>
+          <div class="stat-n">12+</div>
+          <div class="stat-l">Años de experiencia</div>
+        </div>
+        <div>
+          <div class="stat-n">60+</div>
+          <div class="stat-l">Proyectos</div>
+        </div>
+        <div>
+          <div class="stat-n">3</div>
+          <div class="stat-l">Países</div>
+        </div>
+      </div>
+
+      <div class="about-contact">
+        <a href="mailto:hola@marianaalbarracin.com">
+          <span>Email</span>
+          hola@marianaalbarracin.com
+        </a>
+        <a href="tel:+34683639451">
+          <span>Tel</span>
+          +34 683 639 451
+        </a>
+      </div>
+
+      <div class="about-social">
+        <a href="https://www.linkedin.com/in/marianaalbarracin-design" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/marianaalbarracin.dg" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.behance.net/marianalbarrarracin" target="_blank" rel="noopener">Behance</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     CONTACT CTA
+============================= -->
+<section class="cta-band">
+  <div class="reveal">
+    <span class="s-label">Trabajemos juntos</span>
+    <h2 class="cta-h2">¿Empezamos algo<br><i>extraordinario?</i></h2>
+    <p class="cta-sub">Cuéntame tu proyecto · Hablemos de tu marca</p>
+    <div class="cta-links">
+      <a href="mailto:hola@marianaalbarracin.com" class="cta-email">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 3l6 5 6-5M1 3h12v9H1z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+        </svg>
+        hola@marianaalbarracin.com
+      </a>
+      <a href="tel:+34683639451" class="cta-phone">+34 683 639 451</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     FOOTER
+============================= -->
+<footer>
+  <div>
+    <div class="foot-brand">Mariana Albarracin</div>
+    <div class="foot-tag">Identidad Visual · Diseño Gráfico</div>
+  </div>
+  <div class="foot-links">
+    <a href="https://www.linkedin.com/in/marianaalbarracin-design" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/marianaalbarracin.dg" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.behance.net/marianalbarrarracin" target="_blank" rel="noopener">Behance</a>
+    <a href="mailto:hola@marianaalbarracin.com">Email</a>
+  </div>
+  <div class="foot-copy">© 2026 Mariana Albarracin · marianaalbarracin.com</div>
+</footer>
+
+<script>
+/* ==============================
+   PORTFOLIO DATA
+============================== */
+const M = 'http://www.marianaalbarracin.com/images/imgs/projectMosaic/';
+const S = 'http://www.marianaalbarracin.com/images/imgs/new-slider/';
+
+const PROJECTS = [
+  { name: 'Meraki Instituto',       cat: 'id',        img: M + 'institutomeraki_marianaalbarracin.jpg',           desc: 'Identidad · Señalética' },
+  { name: 'Le Bairén',              cat: 'packaging',  img: M + 'lebairen_packagingdesign_marianaalbarracin.jpg',   desc: 'Packaging · E-commerce' },
+  { name: 'Paul',                   cat: 'id',        img: M + 'paul_afiche_marianaalbarracin.jpg',                desc: 'Identidad Visual · Afiche' },
+  { name: 'Dulce de Leche &amp; Co', cat: 'retail',    img: M + 'dulcedelecheandco_marianaalbarracin.jpg',          desc: 'Branding · Espacios Comerciales' },
+  { name: 'Circuito Mitre',         cat: 'id',        img: M + 'circuito_mitre_2_marianaalbarracin.jpg',           desc: 'Branding · Web' },
+  { name: '3 Osos',                 cat: 'id',        img: M + 'tres_osos_2_marianaalbarracin.jpg',                desc: 'Branding · Identidad' },
+  { name: 'Karukinka',              cat: 'packaging',  img: M + 'karukinka_bag_marianaalbarracin.jpg',              desc: 'Packaging · Producto' },
+  { name: 'EGS Rebranding',         cat: 'id',        img: S + '5_EGS_rebranding_marianaalbarracin_.jpg',          desc: 'Rebranding · Identidad' },
+  { name: 'M Estudio',              cat: 'id',        img: S + 'M_estudio_branding_marianaalbarracin_.jpg',        desc: 'Branding · Estudio' },
+  { name: 'Paul · Campañas',        cat: 'campanas',  img: S + '3_PAUL_contenido_RRSS_marianaalbarracin_.jpg',     desc: 'Contenido · RRSS' },
+  { name: 'Treil App',              cat: 'uxui',      img: S + '2_App_design_3_marianaalbarracin.jpg',             desc: 'UX/UI · App Design', soon: true },
+  { name: 'DDL Packaging',          cat: 'packaging',  img: S + '4_DDL_flow_pack_marianaalbarracin_.jpg',           desc: 'Packaging · Flujo' },
+  { name: 'Meraki · Señalética',    cat: 'retail',    img: S + '6_Meraki_instituto_sign_design_branding_3_marianaalbarracin_.jpg', desc: 'Señalética · Branding' },
+];
+
+const CATS = {
+  id: 'Identidad', packaging: 'Packaging', editorial: 'Editorial',
+  retail: 'Retail', campanas: 'Campañas', producto: 'Producto', uxui: 'UX/UI'
+};
+
+function renderGrid(filter) {
+  const grid = document.getElementById('grid');
+  const list = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === filter);
+
+  // Fade out
+  grid.style.opacity = '0';
+  grid.style.transition = 'opacity 0.2s';
+
+  setTimeout(() => {
+    grid.innerHTML = '';
+    list.forEach((p, i) => {
+      const el = document.createElement('div');
+      el.className = 'pitem';
+      el.style.cssText = `opacity:0;transform:translateY(14px);transition:opacity 0.4s ${i * 0.055}s ease,transform 0.4s ${i * 0.055}s ease`;
+      el.innerHTML =
+        `<img src="${p.img}" alt="${p.name}" loading="lazy">` +
+        `<div class="poverlay"><div class="pinfo">` +
+        `<div class="pcat">${CATS[p.cat] || p.cat}</div>` +
+        `<div class="pname">${p.name}</div>` +
+        `<div class="pdesc">${p.desc}</div>` +
+        `</div></div>` +
+        (p.soon ? `<div class="badge">Próximamente</div>` : '');
+      grid.appendChild(el);
+    });
+
+    grid.style.opacity = '1';
+
+    // Stagger in
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      grid.querySelectorAll('.pitem').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+    }));
+  }, 200);
+}
+
+renderGrid('all');
+
+document.getElementById('filters').addEventListener('click', e => {
+  if (!e.target.matches('.f-btn')) return;
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  renderGrid(e.target.dataset.f);
+});
+
+/* ==============================
+   HERO SLIDER
+============================== */
+const slides = document.querySelectorAll('.slide');
+const dotBtns = document.querySelectorAll('.dot');
+let cur = 0, timer;
+
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  dotBtns[cur].classList.remove('active');
+  cur = (n + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  dotBtns[cur].classList.add('active');
+}
+
+function startTimer() {
+  clearInterval(timer);
+  timer = setInterval(() => goTo(cur + 1), 4500);
+}
+
+startTimer();
+dotBtns.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.i); startTimer(); }));
+
+/* ==============================
+   STICKY NAV
+============================== */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+/* ==============================
+   MOBILE MENU
+============================== */
+const burger = document.getElementById('burger');
+const overlay = document.getElementById('overlay');
+
+burger.addEventListener('click', () => {
+  const open = overlay.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+
+document.querySelectorAll('.o-link').forEach(a => {
+  a.addEventListener('click', () => {
+    overlay.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ==============================
+   SCROLL REVEAL
+============================== */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ==============================
+   SMOOTH SCROLL (Safari compat)
+============================== */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    const top = target.getBoundingClientRect().top + window.scrollY - 60;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
