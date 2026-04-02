@@ -156,16 +156,20 @@
      HERO
   =========================== */
   .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 45% 55%;
+    display: flex;
+    flex-direction: column;
   }
 
+  /* slider goes first in DOM but visually second — nav pushes it down */
+  .hero-right {
+    order: 1;
+  }
   .hero-left {
+    order: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 9rem 4rem 6rem 5vw;
+    padding: 3.5rem 5vw 4rem;
     position: relative;
     z-index: 2;
   }
@@ -181,20 +185,16 @@
     animation: aUp 0.8s 0.3s forwards;
   }
 
-  .hero-name {
+  .hero-manifesto {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3.2rem, 5.5vw, 6.5rem);
+    font-size: clamp(1.25rem, 2.2vw, 1.9rem);
     font-weight: 400;
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    opacity: 0;
-    animation: aUp 0.9s 0.5s forwards;
-  }
-  .hero-name i {
     font-style: italic;
-    color: var(--accent);
-    display: block;
+    line-height: 1.45;
+    color: var(--text);
+    max-width: 700px;
+    opacity: 0;
+    animation: aUp 0.8s 0.55s forwards;
   }
 
   .hero-tagline {
@@ -258,6 +258,10 @@
   .hero-right {
     position: relative;
     overflow: hidden;
+    width: 100%;
+    height: 70vh;
+    max-height: 600px;
+    min-height: 320px;
   }
   .slides-track {
     display: flex;
@@ -781,10 +785,7 @@
      RESPONSIVE
   =========================== */
   @media (max-width: 1100px) {
-    .hero { grid-template-columns: 1fr; grid-template-rows: auto 52vw; min-height: auto; }
-    .hero-right { display: block; height: 52vw; max-height: 400px; }
-    .hero-right .slides-track { height: 100%; }
-    .hero-left { padding: 9rem 6vw 6rem; min-height: 70vh; }
+    .hero-left { padding: 3rem 6vw 3.5rem; }
     .grid { grid-template-columns: repeat(3, 1fr); }
     .srv-grid { grid-template-columns: 1fr 1fr; }
     .about-inner { grid-template-columns: 1fr; gap: 3.5rem; }
@@ -800,15 +801,10 @@
 
   @media (max-width: 720px) {
     :root { --nav-h: 60px; }
-    .hero { grid-template-rows: auto 60vw; }
-    .hero-right { height: 60vw; max-height: 340px; }
-    .hero-left { padding: 7.5rem 6vw 4.5rem; min-height: 55vh; }
-    .hero-name { font-size: clamp(2.4rem, 9vw, 3.2rem); }
-    .hero-eyebrow { font-size: 0.58rem; margin-bottom: 1.25rem; }
-    .hero-tagline { font-size: 0.65rem; margin-top: 1.25rem; }
-    .hero-rule { margin: 1.75rem 0; }
-    .hero-cta { font-size: 0.62rem; }
-    .hero-meta { bottom: 1.75rem; font-size: 0.56rem; }
+    .hero-right { height: 55vw; max-height: 340px; min-height: 240px; }
+    .hero-left { padding: 2.5rem 6vw 3rem; }
+    .hero-eyebrow { font-size: 0.58rem; margin-bottom: 1rem; }
+    .hero-manifesto { font-size: clamp(1rem, 4vw, 1.4rem); }
 
     .ticker-track span { font-size: 0.56rem; padding: 0 1.5rem; }
 
@@ -842,8 +838,8 @@
   }
 
   @media (max-width: 480px) {
-    .hero-left { padding: 6.5rem 5vw 4rem; }
-    .hero-name { font-size: clamp(2.1rem, 11vw, 2.8rem); }
+    .hero-left { padding: 2rem 5vw 2.5rem; }
+    .hero-manifesto { font-size: clamp(0.95rem, 4.5vw, 1.2rem); }
 
     .grid { grid-template-columns: 1fr; grid-auto-rows: 250px; gap: 5px; }
     .filters { gap: 0.25rem; }
@@ -878,9 +874,9 @@
   <a href="#home" class="nav-logo">Mariana <i>Albarracin</i></a>
   <ul class="nav-links">
     <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#about">Sobre mí</a></li>
-    <li><a href="mailto:hola@marianaalbarracin.com" class="nav-cta">Contacto</a></li>
+    <li><a href="#servicios">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:hola@marianaalbarracin.com" class="nav-cta">Contact</a></li>
   </ul>
   <button class="nav-burger" id="burger" aria-label="Menú">
     <span></span><span></span><span></span>
@@ -889,9 +885,9 @@
 
 <div class="nav-overlay" id="overlay">
   <a href="#portfolio" class="o-link">Portfolio</a>
-  <a href="#servicios" class="o-link">Servicios</a>
-  <a href="#about" class="o-link">Sobre mí</a>
-  <a href="mailto:hola@marianaalbarracin.com" class="o-link">Contacto</a>
+  <a href="#servicios" class="o-link">Services</a>
+  <a href="#about" class="o-link">About</a>
+  <a href="mailto:hola@marianaalbarracin.com" class="o-link">Contact</a>
 </div>
 
 <!-- ============================
@@ -899,23 +895,9 @@
 ============================= -->
 <section id="home" class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">Buenos Aires · Madrid · 2012–</p>
-    <h1 class="hero-name">
-      Mariana
-      <i>Albarracin</i>
-    </h1>
-    <p class="hero-tagline">Identidad Visual · Diseño Gráfico</p>
-    <div class="hero-rule"></div>
-    <a href="#portfolio" class="hero-cta">
-      Ver portfolio
-      <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
-        <path d="M1 5h14M11 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-    <div class="hero-meta">
-      <div class="hero-meta-line"></div>
-      Diseño que comunica
-    </div>
+    <div class="hero-rule" style="margin-top:0;margin-bottom:2.5rem;"></div>
+    <p class="hero-eyebrow hero-eyebrow--below">Buenos Aires · Madrid · 2012–</p>
+    <p class="hero-manifesto">Construyo universos visuales coherentes que conectan identidad, producto y experiencia de marca.</p>
   </div>
 
   <div class="hero-right">
@@ -1019,7 +1001,7 @@
 <section id="servicios" class="servicios">
   <div class="section-header reveal">
     <span class="s-label">Lo que ofrezco</span>
-    <h2 class="s-title">Servicios</h2>
+    <h2 class="s-title">Services</h2>
   </div>
 
   <div class="srv-grid">
@@ -1075,7 +1057,7 @@
     </div>
 
     <div class="reveal d1">
-      <span class="s-label about-label">Sobre mí</span>
+      <span class="s-label about-label">About</span>
       <p class="about-pull">"Vivir el diseño como<br>una forma de pensar<br>el mundo."</p>
       <p class="about-bio">En el año 2012 fundé mi estudio creativo para especializarme en la identidad, diseño de marcas y branding. Vivir y trabajar desde diferentes lugares alrededor del mundo me ha enseñado a apreciar la diversidad visual y cultural, para poder resolver soluciones de diseño integrales, flexibles y significativas con un proceso profundo de investigación y desarrollo de conceptos.</p>
 
