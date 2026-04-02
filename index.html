@@ -189,8 +189,12 @@
     line-height: 1.6;
     color: var(--text);
     text-align: left;
+    max-width: 32ch;
     opacity: 0;
     animation: aUp 0.8s 0.55s forwards;
+  }
+  @media (max-width: 720px) {
+    .hero-manifesto { max-width: 100%; font-size: clamp(0.9rem, 3.8vw, 1.05rem); }
   }
 
   .hero-tagline {
@@ -878,7 +882,7 @@
   </div>
 
   <div class="hero-left">
-    <p class="hero-manifesto">Construyo universos visuales coherentes<br>que conectan identidad, producto<br>y experiencia de marca.</p>
+    <p class="hero-manifesto">Construyo universos visuales coherentes que conectan identidad, producto y experiencia de marca.</p>
     <p class="hero-eyebrow">Buenos Aires · Madrid</p>
   </div>
 </section>
