@@ -717,17 +717,18 @@
   }
   .foot-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: nowrap;
+    align-items: center;
   }
   .foot-links a {
-    font-size: 0.62rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.5);
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
   }
   .foot-links a:hover { color: var(--aqua); }
+  .foot-links svg { display: block; }
   .foot-copy {
     font-size: 0.6rem;
     color: rgba(255,255,255,0.2);
@@ -798,7 +799,7 @@
     .cta-email { justify-content: center; padding: 0.9rem 1.5rem; }
 
     footer { flex-direction: column; text-align: center; padding: 2rem 5vw; gap: 1rem; }
-    .foot-links { justify-content: center; gap: 1.25rem; }
+    .foot-links { justify-content: center; gap: 1.5rem; }
     .foot-brand { font-size: 0.92rem; }
   }
 
