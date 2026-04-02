@@ -58,15 +58,16 @@
   }
 
   .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--text);
     line-height: 1;
   }
   .nav-logo i {
-    font-style: italic;
+    font-style: normal;
     color: var(--accent);
   }
 
@@ -258,13 +259,19 @@
     position: relative;
     overflow: hidden;
   }
-  .slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 1.4s ease;
+  .slides-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.9s cubic-bezier(0.77,0,0.18,1);
   }
-  .slide.active { opacity: 1; }
+  .slide {
+    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
   .slide img {
     width: 100%;
     height: 100%;
@@ -909,25 +916,27 @@
   </div>
 
   <div class="hero-right">
-    <div class="slide active" id="s0">
-      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/6_Meraki_instituto_sign_design_branding_3_marianaalbarracin_.jpg" alt="Meraki Instituto">
-      <div class="slide-veil"></div>
-    </div>
-    <div class="slide" id="s1">
-      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/4_DDL_flow_pack_marianaalbarracin_.jpg" alt="Dulce de Leche">
-      <div class="slide-veil"></div>
-    </div>
-    <div class="slide" id="s2">
-      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/3_PAUL_contenido_RRSS_marianaalbarracin_.jpg" alt="Paul">
-      <div class="slide-veil"></div>
-    </div>
-    <div class="slide" id="s3">
-      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/5_EGS_rebranding_marianaalbarracin_.jpg" alt="EGS Rebranding">
-      <div class="slide-veil"></div>
-    </div>
-    <div class="slide" id="s4">
-      <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/M_estudio_branding_marianaalbarracin_.jpg" alt="M Estudio">
-      <div class="slide-veil"></div>
+    <div class="slides-track" id="slidesTrack">
+      <div class="slide" id="s0">
+        <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/6_Meraki_instituto_sign_design_branding_3_marianaalbarracin_.jpg" alt="Meraki Instituto">
+        <div class="slide-veil"></div>
+      </div>
+      <div class="slide" id="s1">
+        <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/4_DDL_flow_pack_marianaalbarracin_.jpg" alt="Dulce de Leche">
+        <div class="slide-veil"></div>
+      </div>
+      <div class="slide" id="s2">
+        <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/3_PAUL_contenido_RRSS_marianaalbarracin_.jpg" alt="Paul">
+        <div class="slide-veil"></div>
+      </div>
+      <div class="slide" id="s3">
+        <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/5_EGS_rebranding_marianaalbarracin_.jpg" alt="EGS Rebranding">
+        <div class="slide-veil"></div>
+      </div>
+      <div class="slide" id="s4">
+        <img src="http://www.marianaalbarracin.com/images/imgs/new-slider/M_estudio_branding_marianaalbarracin_.jpg" alt="M Estudio">
+        <div class="slide-veil"></div>
+      </div>
     </div>
     <div class="slide-dots" id="dots">
       <button class="dot active" data-i="0"></button>
@@ -1199,17 +1208,17 @@ document.getElementById('filters').addEventListener('click', e => {
 });
 
 /* ==============================
-   HERO SLIDER
+   HERO SLIDER (horizontal)
 ============================== */
-const slides = document.querySelectorAll('.slide');
+const slidesTrack = document.getElementById('slidesTrack');
 const dotBtns = document.querySelectorAll('.dot');
+const slideCount = document.querySelectorAll('.slide').length;
 let cur = 0, timer;
 
 function goTo(n) {
-  slides[cur].classList.remove('active');
   dotBtns[cur].classList.remove('active');
-  cur = (n + slides.length) % slides.length;
-  slides[cur].classList.add('active');
+  cur = (n + slideCount) % slideCount;
+  slidesTrack.style.transform = `translateX(-${cur * 100}%)`;
   dotBtns[cur].classList.add('active');
 }
 
