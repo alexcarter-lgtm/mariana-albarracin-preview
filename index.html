@@ -562,30 +562,62 @@
     background: #fff;
     overflow: hidden;
   }
+  /* 2-col grid: left=text, right=photo — both span full height */
   .about-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    grid-template-rows: auto 1fr;
+    gap: 0 4rem;
     max-width: 1200px;
     margin: 0 auto;
-    align-items: center;
   }
-  .about-text-col {}
+  /* title top-left */
+  .about-title-wrap {
+    grid-column: 1;
+    grid-row: 1;
+    padding-bottom: 2.5rem;
+  }
   .about-title {
     font-family: 'Inter', sans-serif;
-    font-size: clamp(2.6rem, 5.5vw, 5rem);
-    font-weight: 700;
-    line-height: 1.05;
+    font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
     color: var(--text);
-    margin-bottom: 2.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+  }
+  /* bio bottom-left */
+  .about-text-col {
+    grid-column: 1;
+    grid-row: 2;
   }
   .about-body {
     font-size: 0.9rem;
     line-height: 1.85;
     color: #555;
     margin-bottom: 1.5rem;
-    max-width: 480px;
+    max-width: 420px;
+  }
+  /* photo right — spans both rows */
+  .about-photo-wrap {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+  .about-frame {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+  }
+  .about-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
   .about-cv-link {
     display: inline-flex;
@@ -598,26 +630,11 @@
     color: var(--text);
     border-bottom: 1px solid var(--text);
     padding-bottom: 2px;
-    margin-top: 1rem;
+    margin-top: 1.25rem;
     transition: color 0.2s, border-color 0.2s;
+    align-self: flex-end;
   }
   .about-cv-link:hover { color: var(--accent); border-color: var(--accent); }
-  .about-photo-wrap {
-    position: relative;
-  }
-  .about-frame {
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    max-width: 420px;
-    margin-left: auto;
-  }
-  .about-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-  }
 
   /* ===========================
      CONTACT CTA
@@ -734,8 +751,12 @@
     .hero-left { padding: 2.5rem 6vw 3rem; }
     .grid { grid-template-columns: repeat(3, 1fr); }
     .srv-grid { grid-template-columns: 1fr 1fr; }
-    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .about-frame { max-width: 360px; margin: 0 auto; }
+    .about-inner { grid-template-columns: 1fr; grid-template-rows: auto; gap: 2rem; }
+    .about-title-wrap { grid-column: 1; grid-row: 1; }
+    .about-photo-wrap { grid-column: 1; grid-row: 2; align-items: center; }
+    .about-text-col { grid-column: 1; grid-row: 3; }
+    .about-frame { max-width: 320px; margin: 0 auto; }
+    .about-cv-link { align-self: center; }
     .nav-links { display: none; }
     .nav-burger { display: flex; }
     .portfolio { padding: 5rem 5vw; }
@@ -988,16 +1009,18 @@
 ============================= -->
 <section id="about" class="about">
   <div class="about-inner">
-    <div class="about-text-col reveal">
+    <div class="about-title-wrap reveal">
       <h2 class="about-title">Hola, soy<br>Mariana<br>Albarracín</h2>
+    </div>
+    <div class="about-text-col reveal d1">
       <p class="about-body">Directora creativa y diseñadora gráfica especializada en branding e identidad visual, con casi 20 años de experiencia desarrollando sistemas de marca para retail, gastronomía, instituciones y lifestyle.</p>
       <p class="about-body">Experiencia en proyectos desde la conceptualización hasta su implementación en packaging, producto, espacios comerciales y campañas. Premio Sello Buen Diseño Argentino 2023.</p>
-      <a href="#" class="about-cv-link">CV</a>
     </div>
     <div class="about-photo-wrap reveal d1">
       <div class="about-frame">
         <img src="img/mariana-bio.jpg" alt="Mariana Albarracín">
       </div>
+      <a href="#" class="about-cv-link">CV</a>
     </div>
   </div>
 </section>
