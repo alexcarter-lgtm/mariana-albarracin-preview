@@ -555,23 +555,58 @@
      ABOUT
   =========================== */
   .about {
-    padding: 7rem 5vw;
+    padding: 6rem 5vw;
     background: #fff;
+    overflow: hidden;
   }
   .about-inner {
     display: grid;
-    grid-template-columns: 5fr 6fr;
-    gap: 7rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
     max-width: 1200px;
     margin: 0 auto;
     align-items: center;
   }
+  .about-text-col {}
+  .about-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2.6rem, 5.5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.02em;
+  }
+  .about-body {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: #555;
+    margin-bottom: 1.5rem;
+    max-width: 480px;
+  }
+  .about-cv-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 2px;
+    margin-top: 1rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .about-cv-link:hover { color: var(--accent); border-color: var(--accent); }
   .about-photo-wrap {
     position: relative;
   }
   .about-frame {
     aspect-ratio: 3/4;
     overflow: hidden;
+    max-width: 420px;
+    margin-left: auto;
   }
   .about-frame img {
     width: 100%;
@@ -579,96 +614,7 @@
     object-fit: cover;
     object-position: top center;
     display: block;
-    transition: transform 0.7s ease;
   }
-  .about-frame:hover img { transform: scale(1.04); }
-  .about-deco {
-    position: absolute;
-    bottom: -1.75rem;
-    right: -1.75rem;
-    width: 55%;
-    height: 55%;
-    border: 2px solid var(--gold);
-    z-index: -1;
-    opacity: 0.5;
-  }
-
-  .about-label { margin-bottom: 0.75rem; }
-  .about-pull {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.3rem, 2.2vw, 1.75rem);
-    font-weight: 400;
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.45;
-    margin-bottom: 1.75rem;
-  }
-  .about-bio {
-    font-size: 0.88rem;
-    line-height: 1.85;
-    color: #6b6b6b;
-    margin-bottom: 2.5rem;
-  }
-  .about-stats {
-    display: flex;
-    gap: 2.5rem;
-    padding: 1.5rem 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 2.5rem;
-  }
-  .stat-n {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.6rem;
-    font-weight: 400;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-  .stat-l {
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #aaa;
-  }
-  .about-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-  }
-  .about-contact a {
-    font-size: 0.82rem;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.2s;
-  }
-  .about-contact a:hover { color: var(--accent); }
-  .about-contact a span {
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #aaa;
-    min-width: 48px;
-  }
-  .about-social {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
-  .about-social a {
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text);
-    border: 1px solid var(--border);
-    padding: 0.45rem 1rem;
-    border-radius: 100px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .about-social a:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ===========================
      CONTACT CTA
@@ -785,9 +731,8 @@
     .hero-left { padding: 2.5rem 6vw 3rem; }
     .grid { grid-template-columns: repeat(3, 1fr); }
     .srv-grid { grid-template-columns: 1fr 1fr; }
-    .about-inner { grid-template-columns: 1fr; gap: 3.5rem; }
-    .about-deco { display: none; }
-    .about-photo-wrap { max-width: 420px; margin: 0 auto; }
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .about-frame { max-width: 360px; margin: 0 auto; }
     .nav-links { display: none; }
     .nav-burger { display: flex; }
     .portfolio { padding: 5rem 5vw; }
@@ -818,10 +763,7 @@
 
     .about { padding: 4.5rem 5vw; }
     .about-inner { gap: 2.5rem; }
-    .about-pull { font-size: clamp(1.15rem, 3.5vw, 1.4rem); }
-    .about-bio { font-size: 0.84rem; }
-    .about-stats { gap: 1.5rem; flex-wrap: wrap; }
-    .stat-n { font-size: 2.1rem; }
+    .about-title { font-size: clamp(2rem, 7vw, 3.2rem); }
 
     .cta-band { padding: 4rem 6vw; }
     .cta-h2 { font-size: clamp(1.7rem, 5.5vw, 2.5rem); }
@@ -846,9 +788,7 @@
     .srv-card { padding: 1.75rem 1.5rem; }
     .srv-num { font-size: 3rem; }
 
-    .about-stats { flex-direction: column; gap: 1rem; padding: 1.25rem 0; }
-    .about-contact a { font-size: 0.78rem; }
-    .about-social a { font-size: 0.58rem; padding: 0.38rem 0.85rem; }
+    .about-body { font-size: 0.84rem; }
 
     .cta-band { padding: 3.5rem 5vw; }
     .cta-email { font-size: 0.65rem; }
@@ -1045,48 +985,15 @@
 ============================= -->
 <section id="about" class="about">
   <div class="about-inner">
-    <div class="about-photo-wrap reveal">
-      <div class="about-frame">
-        <img src="http://www.marianaalbarracin.com/images/imgs/Bio/bio.jpg" alt="Mariana Albarracin">
-      </div>
-      <div class="about-deco"></div>
+    <div class="about-text-col reveal">
+      <h2 class="about-title">Hola, soy<br>Mariana<br>Albarracín</h2>
+      <p class="about-body">Directora creativa y diseñadora gráfica especializada en branding e identidad visual, con casi 20 años de experiencia desarrollando sistemas de marca para retail, gastronomía, instituciones y lifestyle.</p>
+      <p class="about-body">Experiencia en proyectos desde la conceptualización hasta su implementación en packaging, producto, espacios comerciales y campañas. Premio Sello Buen Diseño Argentino 2023.</p>
+      <a href="#" class="about-cv-link">CV</a>
     </div>
-
-    <div class="reveal d1">
-      <span class="s-label about-label">About</span>
-      <p class="about-pull">"Vivir el diseño como<br>una forma de pensar<br>el mundo."</p>
-      <p class="about-bio">En el año 2012 fundé mi estudio creativo para especializarme en la identidad, diseño de marcas y branding. Vivir y trabajar desde diferentes lugares alrededor del mundo me ha enseñado a apreciar la diversidad visual y cultural, para poder resolver soluciones de diseño integrales, flexibles y significativas con un proceso profundo de investigación y desarrollo de conceptos.</p>
-
-      <div class="about-stats">
-        <div>
-          <div class="stat-n">12+</div>
-          <div class="stat-l">Años de experiencia</div>
-        </div>
-        <div>
-          <div class="stat-n">60+</div>
-          <div class="stat-l">Proyectos</div>
-        </div>
-        <div>
-          <div class="stat-n">3</div>
-          <div class="stat-l">Países</div>
-        </div>
-      </div>
-
-      <div class="about-contact">
-        <a href="mailto:hola@marianaalbarracin.com">
-          <span>Email</span>
-          hola@marianaalbarracin.com
-        </a>
-        <a href="tel:+34683639451">
-          <span>Tel</span>
-          +34 683 639 451
-        </a>
-      </div>
-
-      <div class="about-social">
-        <a href="https://www.linkedin.com/in/marianaalbarracin-design" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/marianaalbarracin.dg" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.behance.net/marianalbarrarracin" target="_blank" rel="noopener">Behance</a>
+    <div class="about-photo-wrap reveal d1">
+      <div class="about-frame">
+        <img src="img/mariana-bio.jpg" alt="Mariana Albarracín">
       </div>
     </div>
   </div>
