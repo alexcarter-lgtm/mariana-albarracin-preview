@@ -450,6 +450,16 @@ const PROJECTS_DATA = {
     year: '2012 — 2018',
     web: { label: 'pauldeco.com', url: 'http://www.pauldeco.com/' },
     instagram: { label: '@paul_french_gallery', url: 'https://www.instagram.com/paul_french_gallery/' }
+  },
+  'le-bairen': {
+    label: 'Branding / Identidad Visual · Packaging · E-commerce',
+    title: 'Le Bairén',
+    subtitle: 'Recetas tradicionales españolas, gourmet. Productos naturales, saludables y sabrosos.',
+    work: 'Branding / Diseño de Sistema de Identidad Visual para packaging de producto / Diseño de Logotipo / Diseño web e-commerce',
+    images: ['img/le-bairen/01.jpg','img/le-bairen/02.jpg'],
+    client: 'Le Bairén · Recetas tradicionales españolas, gourmet',
+    year: '2021',
+    country: 'España'
   }
 };
 
@@ -516,6 +526,7 @@ function render() {
         <div class="info-key">Año</div>
         <div class="info-val">${p.year}</div>
       </div>
+      ${p.country ? `<div class="info-item"><div class="info-key">País</div><div class="info-val">${p.country}</div></div>` : ''}
       ${webItem}
       ${igItem}
     </div>
