@@ -462,6 +462,18 @@ const PROJECTS_DATA = {
     country: 'Argentina',
     web: { label: 'treil.app', url: 'https://www.treil.app/' }
   },
+  egs: {
+    label: 'Rebranding / Identidad Visual',
+    title: 'EGS · Edelweiss Global Services',
+    subtitle: 'Comercio exterior, despachante de aduana, cargas internacionales. El propósito del rediseño fue transmitir la mejora continua de la marca: credibilidad, calidad e innovación. Una versión más cercana y contemporánea, manteniendo sus valores y reforzándolos.',
+    work: 'Rebranding / Diseño de Identidad Visual / Diseño de Logotipo / Brochure / Video Institucional / Diseño offline y online / Diseño de Página Web',
+    images: ['img/egs/01.jpg','img/egs/02.jpg','img/egs/03.jpg','img/egs/04.jpg','img/egs/05.jpg','img/egs/06.jpg','img/egs/07.jpg','img/egs/08.jpg','img/egs/09.jpg','img/egs/10.jpg','img/egs/11.jpg','img/egs/12.jpg'],
+    client: 'EGS · Edelweiss Global Services',
+    year: '2018 — 2019',
+    country: 'Argentina',
+    web: { label: 'edelgs.com', url: 'http://edelgs.com/es/' },
+    youtube: 'https://www.youtube.com/watch?v=6uVZ2Ua2D70'
+  },
   karukinka: {
     label: 'Branding / Identidad',
     title: 'Karukinka',
@@ -535,6 +547,9 @@ function render() {
   const igItem = p.instagram
     ? `<div class="info-item"><div class="info-key">Instagram</div><div class="info-val"><a href="${p.instagram.url}" target="_blank" rel="noopener">${p.instagram.label}</a></div></div>`
     : '';
+  const ytItem = p.youtube
+    ? `<div class="info-item"><div class="info-key">Video</div><div class="info-val"><a href="${p.youtube}" target="_blank" rel="noopener">Ver video institucional →</a></div></div>`
+    : '';
 
   wrap.innerHTML = `
     <header class="project-header">
@@ -564,6 +579,7 @@ function render() {
       ${p.country ? `<div class="info-item"><div class="info-key">País</div><div class="info-val">${p.country}</div></div>` : ''}
       ${webItem}
       ${igItem}
+      ${ytItem}
     </div>
 
     <div class="back-wrap">
