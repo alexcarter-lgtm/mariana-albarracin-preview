@@ -414,14 +414,14 @@
     background: #fff;
     cursor: pointer;
   }
-  .pitem img {
+  .pitem img, .pitem video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: block;
   }
-  .pitem:hover img { transform: scale(1.06); }
+  .pitem:hover img, .pitem:hover video { transform: scale(1.06); }
 
   .poverlay {
     position: absolute;
@@ -1101,7 +1101,7 @@ const PROJECTS = [
   { name: 'Circuito Mitre',         cat: 'id',        img: M + 'circuito_mitre_2_marianaalbarracin.jpg',           desc: 'Branding · Web' },
   { name: 'Treil App',              cat: 'uxui',      img: S + '2_App_design_3_marianaalbarracin.jpg',             desc: 'UX/UI · App Design' },
   { name: 'EGS · Global Services',  cat: 'id',        img: S + '5_EGS_rebranding_marianaalbarracin_.jpg',          desc: 'Identidad · Rebranding · Editorial', label: 'Branding' },
-  { name: 'Karukinka',              cat: 'packaging',  img: 'img/karukinka.jpg',                                    desc: 'Identidad · Packaging · Producto', label: 'Branding' },
+  { name: 'Karukinka',              cat: 'packaging',  img: 'img/karukinka.jpg', video: 'img/karukinka.mp4',       desc: 'Identidad · Packaging · Producto', label: 'Branding' },
   { name: 'M Estudio',              cat: 'id',        img: S + 'M_estudio_branding_marianaalbarracin_.jpg',        desc: 'Branding · Estudio' },
   { name: '3 Osos',                 cat: 'id',        img: M + 'tres_osos_2_marianaalbarracin.jpg',                desc: 'Branding · Identidad' },
   { name: 'Meraki Instituto',       cat: 'id',        img: M + 'institutomeraki_marianaalbarracin.jpg',            desc: 'Identidad · Señalética' },
@@ -1127,8 +1127,11 @@ function renderGrid(filter) {
       const el = document.createElement('div');
       el.className = 'pitem';
       el.style.cssText = `opacity:0;transform:translateY(14px);transition:opacity 0.4s ${i * 0.055}s ease,transform 0.4s ${i * 0.055}s ease`;
+      const media = p.video
+        ? `<video src="${p.video}" autoplay loop muted playsinline></video>`
+        : `<img src="${p.img}" alt="${p.name}" loading="lazy">`;
       el.innerHTML =
-        `<img src="${p.img}" alt="${p.name}" loading="lazy">` +
+        media +
         `<div class="poverlay"><div class="pinfo">` +
         `<div class="pcat">${p.label || CATS[p.cat] || p.cat}</div>` +
         `<div class="pname">${p.name}</div>` +
