@@ -1095,7 +1095,7 @@ const S = 'http://www.marianaalbarracin.com/images/imgs/new-slider/';
 
 const PROJECTS = [
   { name: 'Paul',                   cat: 'id',        img: M + 'paul_afiche_marianaalbarracin.jpg',                desc: 'Identidad Visual · Afiche' },
-  { name: 'Dulce de Leche &amp; Co', cat: 'retail',   img: M + 'dulcedelecheandco_marianaalbarracin.jpg',          desc: 'Branding · Espacios Comerciales' },
+  { name: 'Dulce de Leche &amp; Co', cat: 'retail',   img: 'img/ddl-co.jpg',                                      desc: 'Identidad · Packaging · Retail', label: 'Brand Identity' },
   { name: 'Le Bairén',              cat: 'packaging',  img: M + 'lebairen_packagingdesign_marianaalbarracin.jpg',   desc: 'Packaging · E-commerce' },
   { name: 'Pablo Chiappori',        cat: 'id',        img: S + 'M_estudio_branding_marianaalbarracin_.jpg',        desc: 'Branding · Identidad', soon: true },
   { name: 'SETSS',                  cat: 'id',        img: M + 'circuito_mitre_2_marianaalbarracin.jpg',           desc: 'Identidad · Marca', soon: true },
@@ -1131,7 +1131,7 @@ function renderGrid(filter) {
       el.innerHTML =
         `<img src="${p.img}" alt="${p.name}" loading="lazy">` +
         `<div class="poverlay"><div class="pinfo">` +
-        `<div class="pcat">${CATS[p.cat] || p.cat}</div>` +
+        `<div class="pcat">${p.label || CATS[p.cat] || p.cat}</div>` +
         `<div class="pname">${p.name}</div>` +
         `<div class="pdesc">${p.desc}</div>` +
         `</div></div>` +
