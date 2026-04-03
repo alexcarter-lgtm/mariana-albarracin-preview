@@ -1093,7 +1093,7 @@ const M = 'http://www.marianaalbarracin.com/images/imgs/projectMosaic/';
 const S = 'http://www.marianaalbarracin.com/images/imgs/new-slider/';
 
 const PROJECTS = [
-  { name: 'Paul',                   cat: 'id',        img: M + 'paul_afiche_marianaalbarracin.jpg',                desc: 'Identidad Visual · Afiche' },
+  { name: 'Paul',                   cat: 'id',        img: M + 'paul_afiche_marianaalbarracin.jpg',                desc: 'Identidad Visual · Afiche', slug: 'paul' },
   { name: 'Dulce de Leche &amp; Co', cat: 'retail',   img: 'img/ddl-co.jpg',                                      desc: 'Identidad · Packaging · Retail', label: 'Brand Identity' },
   { name: 'Le Bairén',              cat: 'packaging',  img: M + 'lebairen_packagingdesign_marianaalbarracin.jpg',   desc: 'Packaging · E-commerce' },
   { name: 'Pablo Chiappori',        cat: 'id',        img: 'img/pablo-chiappori.jpg',                             desc: 'Identidad · Web · Editorial', label: 'Branding' },
@@ -1127,6 +1127,7 @@ function renderGrid(filter) {
       const el = document.createElement('div');
       el.className = 'pitem';
       el.style.cssText = `opacity:0;transform:translateY(14px);transition:opacity 0.4s ${i * 0.055}s ease,transform 0.4s ${i * 0.055}s ease`;
+      el.onclick = () => window.location = 'project.html?id=' + (p.slug || p.name.toLowerCase().replace(/[^a-z0-9]+/g,'-'));
       const media = p.video
         ? `<video src="${p.video}" autoplay loop muted playsinline></video>`
         : `<img src="${p.img}" alt="${p.name}" loading="lazy">`;

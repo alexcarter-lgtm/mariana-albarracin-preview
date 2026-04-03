@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto — Mariana Albarracin</title>
+  <meta name="description" content="Proyecto de diseño e identidad visual — Mariana Albarracin, Creative Director & Brand Identity.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+  /* ===========================
+     RESET & BASE
+  =========================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #404041;
+    background: #fff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  img { display: block; max-width: 100%; }
+
+  :root {
+    --text: #404041;
+    --accent: #78a899;
+    --gold: #fdb926;
+    --border: #e8e8e5;
+    --nav-h: 70px;
+  }
+
+  /* ===========================
+     PAGE FADE IN
+  =========================== */
+  @keyframes pageFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page-wrap {
+    animation: pageFade 0.65s ease forwards;
+  }
+
+  /* ===========================
+     NAV
+  =========================== */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    height: var(--nav-h);
+    padding: 0 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.35s, box-shadow 0.35s;
+  }
+  .nav.scrolled {
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .nav-logo i {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.75rem;
+  }
+  .nav-links a {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--text) !important;
+    color: #fff !important;
+    padding: 0.45rem 1.15rem;
+    border-radius: 100px;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--accent) !important; }
+
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text);
+    transition: all 0.3s;
+    transform-origin: center;
+  }
+  .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 800;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s;
+  }
+  .nav-overlay.open { opacity: 1; pointer-events: all; }
+  .nav-overlay a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+  .nav-overlay a:hover { color: var(--accent); }
+
+  /* ===========================
+     PROJECT HEADER
+  =========================== */
+  .project-header {
+    padding-top: calc(var(--nav-h) + 4rem);
+    padding-bottom: 3.5rem;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .project-label {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    font-variant: small-caps;
+  }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .project-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: #777;
+    max-width: 56ch;
+    font-weight: 300;
+  }
+
+  /* ===========================
+     IMAGES
+  =========================== */
+  .project-images {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .project-images img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ===========================
+     WORK DONE
+  =========================== */
+  .project-work {
+    max-width: 1100px;
+    margin: 4rem auto 0;
+    padding: 0 5vw;
+  }
+  .work-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #bbb;
+    font-weight: 500;
+    margin-bottom: 0.65rem;
+  }
+  .work-text {
+    font-size: 0.82rem;
+    color: #888;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ===========================
+     PROJECT INFO BLOCK
+  =========================== */
+  .project-info {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 5vw;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 4rem;
+    margin-top: 0;
+  }
+  .info-item {}
+  .info-key {
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #bbb;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+  .info-val {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .info-val a {
+    color: var(--accent);
+    transition: opacity 0.2s;
+  }
+  .info-val a:hover { opacity: 0.7; }
+
+  /* ===========================
+     BACK LINK
+  =========================== */
+  .back-wrap {
+    max-width: 1100px;
+    margin: 0 auto 5rem;
+    padding: 0 5vw;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.63rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--accent);
+    transition: gap 0.2s, opacity 0.2s;
+  }
+  .back-link:hover { gap: 0.75rem; opacity: 0.75; }
+
+  /* ===========================
+     FOOTER
+  =========================== */
+  footer {
+    background: #2a2a2a;
+    padding: 2.5rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .foot-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 400;
+  }
+  .foot-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0.2rem;
+  }
+  .foot-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .foot-links a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+  }
+  .foot-links a:hover { color: #7fffd4; }
+  .foot-links svg { display: block; }
+  .foot-copy {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ===========================
+     NOT FOUND
+  =========================== */
+  .not-found {
+    padding: calc(var(--nav-h) + 6rem) 5vw 8rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .not-found h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .not-found p {
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  /* ===========================
+     RESPONSIVE
+  =========================== */
+  @media (max-width: 1100px) {
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+  }
+  @media (max-width: 720px) {
+    :root { --nav-h: 60px; }
+    .project-header { padding-top: calc(var(--nav-h) + 2.5rem); padding-bottom: 2.5rem; }
+    .project-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+    .project-subtitle { font-size: 0.86rem; }
+    .project-images { gap: 1rem; }
+    .project-info { gap: 1.5rem 2.5rem; padding: 2rem 5vw; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 5vw; gap: 1rem; }
+    .foot-links { justify-content: center; gap: 1.5rem; }
+  }
+  @media (max-width: 480px) {
+    .project-title { font-size: clamp(2rem, 9vw, 3rem); }
+    .nav-overlay a { font-size: 1.8rem; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ============================
+     NAVIGATION
+============================= -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">Mariana <i>Albarracin</i></a>
+  <ul class="nav-links">
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#servicios">Services</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="mailto:hola@marianaalbarracin.com" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="overlay">
+  <a href="index.html#portfolio" class="o-link">Portfolio</a>
+  <a href="index.html#servicios" class="o-link">Services</a>
+  <a href="index.html#about" class="o-link">About</a>
+  <a href="mailto:hola@marianaalbarracin.com" class="o-link">Contact</a>
+</div>
+
+<!-- ============================
+     CONTENT (injected by JS)
+============================= -->
+<div class="page-wrap" id="pageWrap"></div>
+
+<!-- ============================
+     FOOTER
+============================= -->
+<footer>
+  <div>
+    <div class="foot-brand">Mariana Albarracin</div>
+    <div class="foot-tag">Creative Director & Brand Identity · Madrid — Buenos Aires</div>
+  </div>
+  <div>
+    <div class="foot-links">
+      <a href="https://www.linkedin.com/in/marianaalbarracin-design" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a1.98 1.98 0 01-1.98-1.98 1.98 1.98 0 011.98-1.98 1.98 1.98 0 011.98 1.98 1.98 1.98 0 01-1.98 1.98zm1.957 13.019H3.379V9h3.915v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/marianaalbarracin.dg" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.behance.net/marianalbarrarracin" target="_blank" rel="noopener" aria-label="Behance">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029H23.7zM15.971 13h4.945c-.052-1.96-1.343-2.595-2.372-2.595-1.206 0-2.356.742-2.573 2.595zM8 8c1.033 0 3.556.099 3.556 2.587 0 1.499-.974 2.033-1.51 2.228.96.292 1.957.921 1.957 2.62 0 2.72-2.584 2.965-4.102 2.965H0V8h8zm-2.457 7.697h2.28c.549 0 1.303-.188 1.303-1.151 0-.95-.75-1.159-1.36-1.159H5.543v2.31zm0-4.499h1.969c.601 0 1.157-.195 1.157-1.012 0-.868-.686-1.008-1.211-1.008H5.543v2.02z"/></svg>
+      </a>
+      <a href="mailto:hola@marianaalbarracin.com" aria-label="Email">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="foot-copy">© 2026 Mariana Albarracin · marianaalbarracin.com</div>
+</footer>
+
+<script>
+/* ==============================
+   PROJECTS DATA
+============================== */
+const PROJECTS_DATA = {
+  paul: {
+    label: 'Branding & Comunicación Visual',
+    title: 'Paul',
+    subtitle: 'PAUL es mucho más que un local de decoración. Territorio dominado por los climas y las sensaciones. Industrial y urbano, rústico y campestre, un poco del pasado, un poco imaginado.',
+    work: 'Diseño de Identidad Visual / Gift Card / TAG · R.O.U / Afiche Institucional / Gacetilla de Prensa / Etiquetas de tráfico / Diseño de producto / Diseño Web / Comunicación visual para Redes Sociales',
+    images: ['img/paul/01.jpg','img/paul/02.jpg','img/paul/03.jpg','img/paul/04.jpg','img/paul/05.jpg','img/paul/06.jpg','img/paul/07.jpg','img/paul/08.jpg','img/paul/09.jpg','img/paul/10.jpg'],
+    client: 'Paul French Gallery Buenos Aires · Paul Beach House Punta del Este',
+    year: '2012 — 2018',
+    web: { label: 'pauldeco.com', url: 'http://www.pauldeco.com/' },
+    instagram: { label: '@paul_french_gallery', url: 'https://www.instagram.com/paul_french_gallery/' }
+  }
+};
+
+/* ==============================
+   RENDER
+============================== */
+function getParam(key) {
+  return new URLSearchParams(window.location.search).get(key);
+}
+
+function render() {
+  const id = getParam('id');
+  const wrap = document.getElementById('pageWrap');
+  const p = id && PROJECTS_DATA[id];
+
+  if (!p) {
+    wrap.innerHTML = `
+      <div class="not-found">
+        <h2>Proyecto no encontrado</h2>
+        <p>El proyecto que buscas no existe o no está disponible.</p>
+        <a href="index.html#portfolio" class="back-link">← Volver al portfolio</a>
+      </div>`;
+    return;
+  }
+
+  // Update page title
+  document.title = p.title + ' — Mariana Albarracin';
+
+  // Images HTML
+  const imgsHTML = p.images.map(src =>
+    `<img src="${src}" alt="${p.title}" loading="lazy">`
+  ).join('\n    ');
+
+  // Info items
+  const webItem = p.web
+    ? `<div class="info-item"><div class="info-key">Web</div><div class="info-val"><a href="${p.web.url}" target="_blank" rel="noopener">${p.web.label}</a></div></div>`
+    : '';
+  const igItem = p.instagram
+    ? `<div class="info-item"><div class="info-key">Instagram</div><div class="info-val"><a href="${p.instagram.url}" target="_blank" rel="noopener">${p.instagram.label}</a></div></div>`
+    : '';
+
+  wrap.innerHTML = `
+    <header class="project-header">
+      <span class="project-label">${p.label}</span>
+      <h1 class="project-title">${p.title}</h1>
+      <p class="project-subtitle">${p.subtitle}</p>
+    </header>
+
+    <div class="project-images">
+      ${imgsHTML}
+    </div>
+
+    <div class="project-work">
+      <div class="work-label">Trabajo realizado</div>
+      <p class="work-text">${p.work}</p>
+    </div>
+
+    <div class="project-info">
+      <div class="info-item">
+        <div class="info-key">Cliente</div>
+        <div class="info-val">${p.client}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-key">Año</div>
+        <div class="info-val">${p.year}</div>
+      </div>
+      ${webItem}
+      ${igItem}
+    </div>
+
+    <div class="back-wrap">
+      <a href="index.html#portfolio" class="back-link">← Volver al portfolio</a>
+    </div>
+  `;
+}
+
+render();
+
+/* ==============================
+   STICKY NAV
+============================== */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// Set initial state (page may load already scrolled)
+if (window.scrollY > 50) nav.classList.add('scrolled');
+
+/* ==============================
+   MOBILE MENU
+============================== */
+const burger = document.getElementById('burger');
+const overlay = document.getElementById('overlay');
+
+burger.addEventListener('click', () => {
+  const open = overlay.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+
+document.querySelectorAll('.o-link').forEach(a => {
+  a.addEventListener('click', () => {
+    overlay.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+</script>
+</body>
+</html>
