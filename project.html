@@ -376,6 +376,99 @@
     .project-title { font-size: clamp(2rem, 9vw, 3rem); }
     .nav-overlay a { font-size: 1.8rem; }
   }
+
+  /* ===========================
+     TABBED PROJECTS
+  =========================== */
+  .proj-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 3rem 0 2rem;
+    padding: 0 5vw;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .proj-tab {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #404041;
+    border: 1px solid #e8e8e5;
+    padding: 0.45rem 1.1rem;
+    border-radius: 100px;
+    cursor: pointer;
+    background: #fff;
+    transition: all 0.2s;
+  }
+  .proj-tab.active {
+    background: #404041;
+    color: #fff;
+    border-color: #404041;
+  }
+  .proj-tab:hover:not(.active) {
+    border-color: #78a899;
+    color: #78a899;
+  }
+  .proj-body {
+    padding: 0 5vw;
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+  }
+  .proj-body p {
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: #555;
+    margin-bottom: 1.25rem;
+  }
+  .proj-award {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 5vw;
+    max-width: 1100px;
+    margin: 0 auto 1.5rem;
+    border-top: 1px solid #e8e8e5;
+    border-bottom: 1px solid #e8e8e5;
+  }
+  .proj-award img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .proj-award-text {
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.4;
+  }
+  .proj-stats {
+    display: flex;
+    gap: 3rem;
+    padding: 0 5vw;
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+  }
+  .proj-stat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #78a899;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .proj-stat-l {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+  @media (max-width: 600px) {
+    .proj-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .proj-tabs { margin-top: 2rem; }
+  }
   </style>
 </head>
 <body>
@@ -528,6 +621,39 @@ const PROJECTS_DATA = {
     client: 'Le Bairén · Recetas tradicionales españolas, gourmet',
     year: '2021',
     country: 'España'
+  },
+  ddl: {
+    label: 'Creative Direction & Brand Design',
+    title: 'Dulce de Leche & Co.',
+    subtitle: 'La primera empresa argentina dedicada exclusivamente al universo de productos y sabores derivados del dulce de leche: alfajores, bocaditos, caramelos, licores & lifestyle.',
+    body: 'Desarrollo de identidad visual y sistema de marca para Dulce de Leche & Co.\n\nUn sistema que reinterpreta la tradición del producto en un lenguaje contemporáneo, articulando identidad, packaging y experiencia de marca de forma coherente y expansiva, con proyección internacional.\n\nEl proyecto actualiza su imaginario cultural desde una lectura gráfica contemporánea.',
+    award: { text: 'Premio Sello Buen Diseño Argentino · Sistema de Identidad', logo: 'img/sbd-logo.jpg' },
+    stats: ['+25 Tiendas comerciales diseñadas', '+20 Packaging diseñados', '+15 Productos lifestyle diseñados'],
+    client: 'Dulce de Leche & Co.',
+    year: '2016 — Presente',
+    country: 'Argentina / Brasil',
+    tabs: [
+      {
+        id: 'identidad',
+        label: 'Identidad',
+        media: ['img/ddl/identidad/01.jpg','img/ddl/identidad/02.jpg','img/ddl/identidad/03.jpg','img/ddl/identidad/04.jpg','img/ddl/identidad/05.jpg','img/ddl/identidad/06.jpg','img/ddl/identidad/07.jpg','img/ddl/identidad/08.jpg','img/ddl/identidad/09.jpg','img/ddl/identidad/10.jpg','img/ddl/identidad/11.jpg','img/ddl/identidad/12.jpg','img/ddl/identidad/13.jpg']
+      },
+      {
+        id: 'packaging',
+        label: 'Packaging',
+        media: ['img/ddl/packaging/01.jpg','img/ddl/packaging/02.jpg','img/ddl/packaging/03.jpg','img/ddl/packaging/04.mp4','img/ddl/packaging/05.jpg','img/ddl/packaging/06.mp4','img/ddl/packaging/07.jpg','img/ddl/packaging/08.jpg','img/ddl/packaging/09.jpg','img/ddl/packaging/10.mp4']
+      },
+      {
+        id: 'tiendas',
+        label: 'Tiendas',
+        media: ['img/ddl/tiendas/01.jpg','img/ddl/tiendas/02.jpg','img/ddl/tiendas/03.jpg','img/ddl/tiendas/04.jpg','img/ddl/tiendas/05.jpg','img/ddl/tiendas/06.jpg','img/ddl/tiendas/07.jpg','img/ddl/tiendas/08.jpg','img/ddl/tiendas/09.jpg','img/ddl/tiendas/10.jpg','img/ddl/tiendas/11.jpg','img/ddl/tiendas/12.jpg','img/ddl/tiendas/13.jpg','img/ddl/tiendas/14.jpg','img/ddl/tiendas/15.jpg']
+      },
+      {
+        id: 'producto',
+        label: 'Producto',
+        media: ['img/ddl/producto/01.jpg','img/ddl/producto/02.jpg','img/ddl/producto/03.mp4','img/ddl/producto/04.jpg','img/ddl/producto/05.mp4','img/ddl/producto/06.jpg','img/ddl/producto/07.mp4','img/ddl/producto/08.jpg','img/ddl/producto/09.jpg']
+      }
+    ]
   }
 };
 
@@ -536,6 +662,107 @@ const PROJECTS_DATA = {
 ============================== */
 function getParam(key) {
   return new URLSearchParams(window.location.search).get(key);
+}
+
+let currentTabIndex = 0;
+
+function renderMedia(mediaArr, title) {
+  return mediaArr.map(src =>
+    src.endsWith('.mp4') || src.endsWith('.webm')
+      ? `<video src="${src}" autoplay loop muted playsinline></video>`
+      : `<img src="${src}" alt="${title}" loading="lazy">`
+  ).join('\n    ');
+}
+
+function renderTabbed(p, wrap) {
+  // Body paragraphs
+  const bodyHTML = p.body.split('\n\n').filter(Boolean).map(par =>
+    `<p>${par.trim()}</p>`
+  ).join('\n');
+
+  // Award block
+  const awardHTML = p.award ? `
+    <div class="proj-award">
+      <img src="${p.award.logo}" alt="Premio">
+      <div class="proj-award-text">${p.award.text}</div>
+    </div>` : '';
+
+  // Stats block
+  const statsHTML = p.stats && p.stats.length ? `
+    <div class="proj-stats">
+      ${p.stats.map(s => {
+        const match = s.match(/^([+\d\s,]+)(.*)/);
+        if (match) {
+          return `<div><div class="proj-stat-n">${match[1].trim()}</div><div class="proj-stat-l">${match[2].trim()}</div></div>`;
+        }
+        return `<div><div class="proj-stat-n">—</div><div class="proj-stat-l">${s}</div></div>`;
+      }).join('\n      ')}
+    </div>` : '';
+
+  // Tab buttons
+  const tabsHTML = `
+    <div class="proj-tabs" id="projTabs">
+      ${p.tabs.map((t, i) =>
+        `<button class="proj-tab${i === currentTabIndex ? ' active' : ''}" data-tab="${i}">${t.label}</button>`
+      ).join('\n      ')}
+    </div>`;
+
+  // Media gallery for active tab
+  const mediaHTML = renderMedia(p.tabs[currentTabIndex].media, p.title);
+
+  wrap.innerHTML = `
+    <header class="project-header">
+      <span class="project-label">${p.label}</span>
+      <h1 class="project-title">${p.title}</h1>
+      <p class="project-subtitle">${p.subtitle}</p>
+    </header>
+
+    <div class="proj-body">${bodyHTML}</div>
+
+    ${awardHTML}
+
+    ${statsHTML}
+
+    ${tabsHTML}
+
+    <div class="project-images" id="tabGallery">
+      ${mediaHTML}
+    </div>
+
+    <div class="project-info">
+      <div class="info-item">
+        <div class="info-key">Cliente</div>
+        <div class="info-val">${p.client}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-key">Año</div>
+        <div class="info-val">${p.year}</div>
+      </div>
+      ${p.country ? `<div class="info-item"><div class="info-key">País</div><div class="info-val">${p.country}</div></div>` : ''}
+    </div>
+
+    <div class="back-wrap">
+      <a href="index.html#portfolio" class="back-link">← Volver al portfolio</a>
+    </div>
+  `;
+
+  // Tab switching
+  document.getElementById('projTabs').addEventListener('click', function(e) {
+    const btn = e.target.closest('.proj-tab');
+    if (!btn) return;
+    const idx = parseInt(btn.dataset.tab, 10);
+    if (idx === currentTabIndex) return;
+    currentTabIndex = idx;
+
+    // Update active state
+    this.querySelectorAll('.proj-tab').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+
+    // Re-render gallery
+    const gallery = document.getElementById('tabGallery');
+    gallery.innerHTML = renderMedia(p.tabs[idx].media, p.title);
+  });
 }
 
 function render() {
@@ -556,7 +783,13 @@ function render() {
   // Update page title
   document.title = p.title + ' — Mariana Albarracin';
 
-  // Images/videos HTML
+  // Tabbed project (e.g. DDL)
+  if (p.tabs) {
+    renderTabbed(p, wrap);
+    return;
+  }
+
+  // Standard project (images array)
   const imgsHTML = p.images.map(src =>
     src.endsWith('.mp4') || src.endsWith('.webm')
       ? `<video src="${src}" autoplay loop muted playsinline></video>`
