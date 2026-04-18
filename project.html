@@ -444,6 +444,16 @@
     color: #555;
     line-height: 1.4;
   }
+  .tab-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 1.6vw, 1.3rem);
+    font-style: italic;
+    color: #404041;
+    padding: 2.5rem 5vw 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid #e8e8e5;
+  }
   .proj-stats {
     display: flex;
     gap: 3rem;
@@ -664,6 +674,25 @@ const PROJECTS_DATA = {
         id: 'producto',
         label: 'Producto',
         media: ['img/ddl/producto/01.jpg','img/ddl/producto/02.jpg','img/ddl/producto/03.mp4','img/ddl/producto/04.jpg','img/ddl/producto/05.mp4','img/ddl/producto/06.jpg','img/ddl/producto/07.mp4','img/ddl/producto/08.jpg','img/ddl/producto/09.jpg']
+      },
+      {
+        id: 'campanas',
+        label: 'Campañas',
+        intro: 'Más de 20 Campañas On-Off realizadas. Campañas seleccionadas:',
+        media: [
+          { type: 'text', content: 'Desembarco de Dulce de Leche & Co. en Brasil' },
+          'img/ddl/campanas/01.jpg',
+          'img/ddl/campanas/02.jpg',
+          'img/ddl/campanas/03.jpg',
+          'img/ddl/campanas/04.jpg',
+          { type: 'text', content: 'Aniversario 7 años de Dulce de Leche & Co. en Argentina' },
+          'img/ddl/campanas/05.jpg',
+          { type: 'text', content: 'Otras campañas' },
+          'img/ddl/campanas/06.jpg',
+          'img/ddl/campanas/07.mp4',
+          'img/ddl/campanas/08.jpg',
+          'img/ddl/campanas/09.jpg'
+        ]
       }
     ]
   }
@@ -679,11 +708,15 @@ function getParam(key) {
 let currentTabIndex = 0;
 
 function renderMedia(mediaArr, title) {
-  return mediaArr.map(src =>
-    src.endsWith('.mp4') || src.endsWith('.webm')
+  return mediaArr.map(item => {
+    if (typeof item === 'object' && item.type === 'text') {
+      return `<div class="tab-section-title">${item.content}</div>`;
+    }
+    const src = typeof item === 'string' ? item : item.src;
+    return src.endsWith('.mp4') || src.endsWith('.webm')
       ? `<video src="${src}" autoplay loop muted playsinline></video>`
-      : `<img src="${src}" alt="${title}" loading="lazy">`
-  ).join('\n    ');
+      : `<img src="${src}" alt="${title}" loading="lazy">`;
+  }).join('\n    ');
 }
 
 function renderTabbed(p, wrap) {
@@ -737,7 +770,7 @@ function renderTabbed(p, wrap) {
 
     ${tabsHTML}
 
-    <p style="padding:0 5vw;max-width:1100px;margin:0 auto 2rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;">Trabajos seleccionados</p>
+    <p id="tabIntro" style="padding:0 5vw;max-width:1100px;margin:0 auto 2rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;">${p.tabs[currentTabIndex].intro || 'Trabajos seleccionados'}</p>
 
     <div class="project-images" id="tabGallery">
       ${mediaHTML}
@@ -775,9 +808,11 @@ function renderTabbed(p, wrap) {
       b.classList.toggle('active', i === idx);
     });
 
-    // Re-render gallery
+    // Re-render gallery + intro
     const gallery = document.getElementById('tabGallery');
     gallery.innerHTML = renderMedia(p.tabs[idx].media, p.title);
+    const introEl = document.getElementById('tabIntro');
+    if (introEl) introEl.textContent = p.tabs[idx].intro || 'Trabajos seleccionados';
   });
 }
 
