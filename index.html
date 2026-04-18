@@ -28,7 +28,7 @@
 
   :root {
     --text: #404041;
-    --accent: #d7ff24;
+    --accent: #78a899;
     --gold: #fdb926;
     --aqua: #7fffd4;
     --gray: #f6f6f5;
@@ -103,7 +103,7 @@
     border-radius: 100px;
   }
   .nav-cta::after { display: none !important; }
-  .nav-cta:hover { background: var(--accent) !important; color: var(--text) !important; }
+  .nav-cta:hover { background: var(--accent) !important; }
 
   .nav-burger {
     display: none;
@@ -671,8 +671,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: #d7ff24;
-    color: #404041;
+    background: var(--accent);
+    color: #fff;
     padding: 0.85rem 2rem;
     border-radius: 100px;
     font-size: 0.72rem;
@@ -681,7 +681,7 @@
     font-weight: 500;
     transition: background 0.2s, transform 0.2s;
   }
-  .cta-email:hover { background: #c5eb1a; transform: translateY(-2px); }
+  .cta-email:hover { background: #6a9e8f; transform: translateY(-2px); }
   .cta-phone {
     font-size: 0.8rem;
     color: rgba(255,255,255,0.5);
