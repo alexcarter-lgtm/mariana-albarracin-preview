@@ -640,6 +640,7 @@ const PROJECTS_DATA = {
     body: 'Desarrollo de identidad visual y sistema de marca para Dulce de Leche & Co.\n\nUn sistema que reinterpreta la tradición del producto en un lenguaje contemporáneo, articulando identidad, packaging y experiencia de marca de forma coherente y expansiva, con proyección internacional.\n\nEl proyecto actualiza su imaginario cultural desde una lectura gráfica contemporánea.',
     award: { text: 'Premio Sello Buen Diseño Argentino · Sistema de Identidad', logo: 'img/sbd-logo.jpg' },
     stats: ['+25 Tiendas comerciales diseñadas', '+20 Packaging diseñados', '+15 Productos lifestyle diseñados'],
+    work: 'Diseño del Sistema de Identidad, packaging, retail, producto y campañas ON - OFF.',
     client: 'Dulce de Leche & Co.',
     year: '2016 — Presente',
     country: 'Argentina / Brasil',
@@ -753,6 +754,8 @@ function renderTabbed(p, wrap) {
       </div>
       ${p.country ? `<div class="info-item"><div class="info-key">País</div><div class="info-val">${p.country}</div></div>` : ''}
     </div>
+
+    ${p.work ? `<div class="project-work"><div class="work-label">Trabajo realizado</div><p class="work-text">${p.work}</p></div>` : ''}
 
     <div class="back-wrap">
       <a href="index.html#portfolio" class="back-link">← Volver al portfolio</a>
