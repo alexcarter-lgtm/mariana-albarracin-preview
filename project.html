@@ -743,6 +743,8 @@ function renderTabbed(p, wrap) {
       ${mediaHTML}
     </div>
 
+    ${p.work ? `<div class="project-work"><div class="work-label">Trabajo realizado</div><p class="work-text">${p.work}</p></div>` : ''}
+
     <div class="project-info">
       <div class="info-item">
         <div class="info-key">Cliente</div>
@@ -754,8 +756,6 @@ function renderTabbed(p, wrap) {
       </div>
       ${p.country ? `<div class="info-item"><div class="info-key">País</div><div class="info-val">${p.country}</div></div>` : ''}
     </div>
-
-    ${p.work ? `<div class="project-work"><div class="work-label">Trabajo realizado</div><p class="work-text">${p.work}</p></div>` : ''}
 
     <div class="back-wrap">
       <a href="index.html#portfolio" class="back-link">← Volver al portfolio</a>
