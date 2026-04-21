@@ -571,6 +571,7 @@ const PROJECTS_DATA = {
   ah: {
     label: 'Branding · Identidad & Packaging',
     title: 'AH',
+    note: 'Proyecto en proceso de documentación · Full case coming soon',
     subtitle: 'AH es una empresa familiar con más de veinte años de trayectoria y un referente dentro del mercado de productos dulces en Uruguay. El proyecto consistió en actualizar su sistema visual acompañando la expansión de su línea de productos sin modificar su logotipo original, mediante el desarrollo de una identidad complementaria basada en nuevos recursos gráficos y un sello identificador. El trabajo incluyó el diseño de la nueva línea de packaging, junto con piezas de merchandising y el sitio web institucional, integrando todos los puntos de contacto bajo un mismo criterio visual y consolidando una arquitectura de marca más clara y flexible para su crecimiento.',
     work: 'Restyling de Logotipo, sistema de identidad complementario, sello, iconos, misceláneas, Packaging, merchandising y identidad web ecommerce.',
     images: ['img/ah/intro.mp4'],
@@ -891,6 +892,7 @@ function render() {
     <header class="project-header">
       <span class="project-label">${p.label}</span>
       <h1 class="project-title">${p.title}</h1>
+      ${p.note ? `<p style="font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:#aaa;margin-top:0.75rem;">${p.note}</p>` : ''}
       <p class="project-subtitle">${p.subtitle}</p>
     </header>
 
