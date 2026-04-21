@@ -547,6 +547,7 @@ const PROJECTS_DATA = {
     label: 'Branding & Comunicación Visual',
     title: 'Paul',
     subtitle: 'PAUL es mucho más que un local de decoración. Territorio dominado por los climas y las sensaciones. Industrial y urbano, rústico y campestre, un poco del pasado, un poco imaginado.',
+    body: 'Desarrollo de sistema visual e identidad de marca para espacio de lifestyle y decoración.\n\nUn lenguaje definido por la convivencia entre lo industrial y lo rústico, aplicado a espacios, piezas gráficas, comunicación de marca y expansión a otro país.\n\nEl proyecto construye una atmósfera visual donde los contrastes materiales definen la identidad.',
     work: 'Diseño de Identidad Visual / Gift Card / TAG · R.O.U / Afiche Institucional / Gacetilla de Prensa / Etiquetas de tráfico / Diseño de producto / Diseño Web / Comunicación visual para Redes Sociales',
     images: ['img/paul/01.jpg','img/paul/02.jpg','img/paul/03.jpg','img/paul/04.jpg','img/paul/05.jpg','img/paul/06.jpg','img/paul/07.jpg','img/paul/08.jpg','img/paul/09.jpg','img/paul/10.jpg'],
     client: 'Paul French Gallery Buenos Aires · Paul Beach House Punta del Este',
@@ -883,6 +884,8 @@ function render() {
       <h1 class="project-title">${p.title}</h1>
       <p class="project-subtitle">${p.subtitle}</p>
     </header>
+
+    ${p.body ? `<div class="proj-body">${p.body.split('\\n\\n').filter(Boolean).map(par => `<p>${par.trim()}</p>`).join('')}</div>` : ''}
 
     <div class="project-images">
       ${imgsHTML}
